@@ -90,6 +90,7 @@
   "workspaces": [
     "packages/antd",
     "packages/chakra-ui",
+    "packages/confluence",
     "packages/core",
     "packages/daisyui",
     "packages/docs",

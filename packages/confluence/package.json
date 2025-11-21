@@ -1,0 +1,108 @@
+{
+  "name": "@rjsf/confluence",
+  "version": "6.1.1",
+  "description": "Atlassian Confluence/Forge UI Kit theme for react-jsonschema-form",
+  "main": "dist/index.js",
+  "module": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./lib/index.js"
+    },
+    "./lib": {
+      "types": "./lib/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./lib/index.js"
+    },
+    "./lib/*.js": {
+      "types": "./lib/*.d.ts",
+      "require": "./dist/*.cjs",
+      "import": "./lib/*.js"
+    },
+    "./dist": {
+      "types": "./lib/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./lib/index.js"
+    },
+    "./dist/*.cjs": {
+      "types": "./lib/*.d.ts",
+      "require": "./dist/*.cjs",
+      "import": "./lib/*.js"
+    }
+  },
+  "scripts": {
+    "build:ts": "rimraf ./lib && tsc -b tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "build:cjs": "esbuild ./src/index.ts --bundle --outfile=dist/index.cjs --sourcemap --packages=external --format=cjs",
+    "build:esm": "esbuild ./src/index.ts --bundle --outfile=dist/confluence.esm.js --sourcemap --packages=external --format=esm",
+    "build:umd": "rollup dist/confluence.esm.js --format=umd --file=dist/confluence.umd.js --name=@rjsf/confluence",
+    "build": "npm run build:ts && npm run build:cjs && npm run build:esm && npm run build:umd",
+    "cs-check": "prettier -l \"{src,test}/**/*.ts?(x)\"",
+    "cs-format": "prettier \"{src,test}/**/*.ts?(x)\" --write",
+    "lint": "eslint src test",
+    "precommit": "lint-staged",
+    "test": "jest",
+    "test:update": "jest --u"
+  },
+  "lint-staged": {
+    "{src,test}/**/*.ts?(x)": [
+      "eslint --fix"
+    ]
+  },
+  "files": [
+    "dist",
+    "lib",
+    "src"
+  ],
+  "engineStrict": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "@forge/react": "^10.0.0",
+    "@rjsf/core": "^6.x",
+    "@rjsf/utils": "^6.x",
+    "react": ">=18"
+  },
+  "dependencies": {
+    "classnames": "^2.5.1",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "@forge/react": "^10.3.2",
+    "@rjsf/core": "^6.x",
+    "@rjsf/snapshot-tests": "^6.x",
+    "@rjsf/utils": "^6.x",
+    "@rjsf/validator-ajv8": "^6.x",
+    "@rollup/plugin-replace": "^6.0.3",
+    "eslint": "^8.57.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjsf-team/react-jsonschema-form.git"
+  },
+  "keywords": [
+    "atlassian",
+    "confluence",
+    "forge",
+    "ui-kit",
+    "react",
+    "react-jsonschema-form",
+    "jsonschema",
+    "json-schema",
+    "json",
+    "rjsf-confluence"
+  ],
+  "author": "React JSON Schema Form Team",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/rjsf-team/react-jsonschema-form/issues"
+  },
+  "homepage": "https://github.com/rjsf-team/react-jsonschema-form",
+  "publishConfig": {
+    "access": "public"
+  }
+}
