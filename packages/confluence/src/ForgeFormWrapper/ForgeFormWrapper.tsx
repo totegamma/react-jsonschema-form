@@ -4,6 +4,8 @@ import { Form } from '@forge/react';
 interface ForgeFormWrapperProps {
   children: ReactNode;
   as?: any;
+  onSubmit?: (e?: any) => void | Promise<void>;
+  [key: string]: any; // Allow other props to be passed through
 }
 
 /** The ForgeFormWrapper component wraps the form with Forge's Form component.
@@ -11,14 +13,17 @@ interface ForgeFormWrapperProps {
  *
  * @param props - The props for this component
  */
-export default function ForgeFormWrapper({ children, as }: ForgeFormWrapperProps) {
+export default function ForgeFormWrapper({ children, as, onSubmit, ...otherProps }: ForgeFormWrapperProps) {
   // If 'as' prop is provided, use that instead of Forge Form
   // This maintains compatibility with RJSF's form wrapper pattern
   if (as) {
     const FormTag = as;
-    return <FormTag>{children}</FormTag>;
+    return <FormTag onSubmit={onSubmit} {...otherProps}>{children}</FormTag>;
   }
 
   // Use Forge's Form component
-  return <Form>{children}</Form>;
+  // Forge Form requires onSubmit, provide a no-op if not provided
+  const handleSubmit = onSubmit || (() => {});
+  
+  return <Form onSubmit={handleSubmit} {...otherProps}>{children}</Form>;
 }
