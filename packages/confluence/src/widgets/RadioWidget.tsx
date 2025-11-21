@@ -32,23 +32,13 @@ export default function RadioWidget<
     required,
     disabled,
     readonly,
-    label,
-    hideLabel,
     onChange,
-    onBlur,
-    onFocus,
   } = props;
   const { enumOptions, enumDisabled, emptyValue } = options;
 
-  const _onChange = (selectedValue: string) => {
-    onChange(enumOptionsValueForIndex(selectedValue, enumOptions, emptyValue));
+  const _onChange = (event: SerialisableEvent) => {
+    onChange(enumOptionsValueForIndex(event.target.value, enumOptions, emptyValue));
   };
-
-  const _onBlur = (event: SerialisableEvent) =>
-    onBlur(id, enumOptionsValueForIndex(event.target.value, enumOptions, emptyValue));
-  
-  const _onFocus = (event: SerialisableEvent) =>
-    onFocus(id, enumOptionsValueForIndex(event.target.value, enumOptions, emptyValue));
 
   const radioOptions = enumOptions
     ? enumOptions.map((option, index) => ({
@@ -63,7 +53,6 @@ export default function RadioWidget<
 
   return (
     <RadioGroup
-      id={id}
       name={id}
       options={radioOptions}
       isRequired={required}

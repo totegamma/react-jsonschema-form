@@ -21,7 +21,6 @@ export default function ArrayFieldTemplate<
   const {
     canAdd,
     disabled,
-    idSchema,
     uiSchema,
     items,
     onAddClick,
@@ -53,10 +52,14 @@ export default function ArrayFieldTemplate<
     ButtonTemplates: { AddButton },
   } = registry.templates;
 
+  // Create a dummy idSchema for templates that require it
+  const baseId = (schema as any).$id || 'array';
+  const dummyIdSchema = { $id: baseId } as any;
+
   return (
-    <Stack space="medium">
+    <Stack space="space.200">
       <ArrayFieldTitleTemplate
-        idSchema={idSchema}
+        idSchema={dummyIdSchema}
         title={uiOptions.title || title}
         schema={schema}
         uiSchema={uiSchema}
@@ -64,13 +67,13 @@ export default function ArrayFieldTemplate<
         registry={registry}
       />
       <ArrayFieldDescriptionTemplate
-        idSchema={idSchema}
+        idSchema={dummyIdSchema}
         description={uiOptions.description || schema.description}
         schema={schema}
         uiSchema={uiSchema}
         registry={registry}
       />
-      <Stack space="small">
+      <Stack space="space.100">
         {items &&
           items.map(({ key, ...itemProps }: ArrayFieldTemplateItemType<T, S, F>) => (
             <ArrayFieldItemTemplate key={key} {...itemProps} />

@@ -29,8 +29,6 @@ export default function RangeWidget<
     value,
     disabled,
     readonly,
-    label,
-    hideLabel,
     onChange,
     onBlur,
     onFocus,
@@ -47,7 +45,6 @@ export default function RangeWidget<
 
   return (
     <Range
-      id={id}
       name={id}
       min={min}
       max={max}

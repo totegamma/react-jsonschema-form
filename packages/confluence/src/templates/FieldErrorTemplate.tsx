@@ -10,19 +10,27 @@ export default function FieldErrorTemplate<
   S extends StrictRJSFSchema = RJSFSchema,
   F extends FormContextType = any,
 >(props: FieldErrorProps<T, S, F>) {
-  const { errors = [], idSchema } = props;
+  const { errors = [] } = props;
   if (errors.length === 0) {
     return null;
   }
-  const id = `${idSchema.$id}__error`;
 
   return (
-    <ul id={id} style={{ color: 'red', fontSize: '0.875rem', listStyle: 'none', padding: 0, margin: '0.25rem 0' }}>
-      {errors.map((error, i) => (
-        <li key={i}>
-          <Text>{error}</Text>
-        </li>
-      ))}
+    <ul style={{ color: 'red', fontSize: '0.875rem', listStyle: 'none', padding: 0, margin: '0.25rem 0' }}>
+      {errors.map((error, i) => {
+        if (typeof error === 'string') {
+          return (
+            <li key={i}>
+              <Text>{error}</Text>
+            </li>
+          );
+        }
+        return (
+          <li key={i}>
+            <div>{error}</div>
+          </li>
+        );
+      })}
     </ul>
   );
 }

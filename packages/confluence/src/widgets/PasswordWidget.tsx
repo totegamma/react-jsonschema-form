@@ -29,15 +29,12 @@ export default function PasswordWidget<
     required,
     readonly,
     disabled,
-    label,
-    hideLabel,
     value,
     onChange,
     onBlur,
     onFocus,
     autofocus,
     options,
-    schema,
     rawErrors = [],
   } = props;
 

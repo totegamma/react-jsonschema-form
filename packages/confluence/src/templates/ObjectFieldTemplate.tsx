@@ -29,10 +29,8 @@ export default function ObjectFieldTemplate<
     disabled,
     readonly,
     uiSchema,
-    idSchema,
     schema,
     formData,
-    onAddClick,
     registry,
   } = props;
 
@@ -49,11 +47,14 @@ export default function ObjectFieldTemplate<
     ButtonTemplates: { AddButton },
   } = registry.templates;
 
+  // For title and description IDs, use schema.$id if available
+  const baseId = (schema as any).$id || 'object';
+
   return (
-    <Stack space="medium">
+    <Stack space="space.200">
       {title && (
         <TitleFieldTemplate
-          id={titleId(idSchema)}
+          id={titleId({ $id: baseId } as any)}
           title={title}
           required={required}
           schema={schema}
@@ -63,14 +64,14 @@ export default function ObjectFieldTemplate<
       )}
       {description && (
         <DescriptionFieldTemplate
-          id={descriptionId(idSchema)}
+          id={descriptionId({ $id: baseId } as any)}
           description={description}
           schema={schema}
           uiSchema={uiSchema}
           registry={registry}
         />
       )}
-      <Stack space="small">
+      <Stack space="space.100">
         {properties.map((element, index) =>
           element.hidden ? (
             <div key={index} style={{ display: 'none' }}>
@@ -83,7 +84,7 @@ export default function ObjectFieldTemplate<
         {canExpand(schema, uiSchema, formData) && (
           <Box>
             <AddButton
-              onClick={onAddClick(schema)}
+              onClick={props.onAddClick}
               disabled={disabled || readonly}
               uiSchema={uiSchema}
               registry={registry}

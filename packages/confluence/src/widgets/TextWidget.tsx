@@ -30,8 +30,6 @@ export default function TextWidget<
     readonly,
     disabled,
     type,
-    label,
-    hideLabel,
     value,
     onChange,
     onBlur,

@@ -14,9 +14,14 @@ export default function DescriptionField<
     return null;
   }
 
-  return (
-    <Text id={id} as="p">
-      {description}
-    </Text>
-  );
+  if (typeof description === 'string') {
+    return (
+      <Text id={id}>
+        {description}
+      </Text>
+    );
+  }
+
+  // For React elements, wrap in a div since Text may not accept them
+  return <div id={id}>{description}</div>;
 }

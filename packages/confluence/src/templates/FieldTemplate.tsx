@@ -1,8 +1,8 @@
 import { FieldTemplateProps, FormContextType, RJSFSchema, StrictRJSFSchema, getTemplate, getUiOptions } from '@rjsf/utils';
-import { Box, Stack } from '@forge/react';
+import { Stack } from '@forge/react';
 
 /** The `FieldTemplate` component is the template used by `SchemaField` to render any field.
- * It renders the field content, (label, description, children, errors, help) inside of a `Box`.
+ * It renders the field content, (label, description, children, errors, help) inside of a Stack.
  *
  * @param props - The `FieldTemplateProps` for this component
  */
@@ -15,20 +15,15 @@ export default function FieldTemplate<
     id,
     children,
     classNames,
-    style,
     disabled,
     displayLabel,
     hidden,
     label,
-    onDropPropertyClick,
-    onKeyChange,
     readonly,
     required,
-    rawErrors = [],
     errors,
     help,
     description,
-    rawDescription,
     schema,
     uiSchema,
     registry,
@@ -48,19 +43,16 @@ export default function FieldTemplate<
   return (
     <WrapIfAdditionalTemplate
       classNames={classNames}
-      style={style}
       disabled={disabled}
       id={id}
       label={label}
-      onDropPropertyClick={onDropPropertyClick}
-      onKeyChange={onKeyChange}
       readonly={readonly}
       required={required}
       schema={schema}
       uiSchema={uiSchema}
       registry={registry}
     >
-      <Stack space="small">
+      <Stack space="space.100">
         {children}
         {displayLabel && description ? description : null}
         {errors}

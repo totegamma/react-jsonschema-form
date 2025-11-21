@@ -37,7 +37,7 @@ export default function CheckboxWidget<
     onFocus,
   } = props;
 
-  const _onChange = (newValue: boolean) => onChange(newValue);
+  const _onChange = (event: SerialisableEvent) => onChange(event.target.checked || false);
   const _onBlur = (event: SerialisableEvent) => onBlur(id, event.target.checked || false);
   const _onFocus = (event: SerialisableEvent) => onFocus(id, event.target.checked || false);
 

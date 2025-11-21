@@ -11,9 +11,9 @@ export default function TitleField<T = any, S extends StrictRJSFSchema = RJSFSch
   required,
 }: TitleFieldProps<T, S, F>) {
   return title ? (
-    <Heading size="small" id={id}>
+    <Heading as="h3" id={id}>
       {title}
-      {required && <span style={{ color: 'red' }}> *</span>}
+      {required && ' *'}
     </Heading>
   ) : null;
 }

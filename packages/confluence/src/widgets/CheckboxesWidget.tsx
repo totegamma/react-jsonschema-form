@@ -9,12 +9,6 @@ import {
   WidgetProps,
 } from '@rjsf/utils';
 
-type SerialisableEvent = {
-  target: {
-    value?: any;
-  };
-};
-
 /** The `CheckboxesWidget` is a widget for rendering checkbox groups.
  * It is typically used to represent an array of enums.
  *
@@ -33,10 +27,6 @@ export default function CheckboxesWidget<
     readonly,
     required,
     onChange,
-    onBlur,
-    onFocus,
-    label,
-    hideLabel,
   } = props;
   const { enumOptions, enumDisabled, emptyValue } = options;
 
@@ -46,12 +36,6 @@ export default function CheckboxesWidget<
     const newValue = selectedValues.map((val) => enumOptionsValueForIndex(val, enumOptions, emptyValue));
     onChange(newValue);
   };
-
-  const _onBlur = (event: SerialisableEvent) =>
-    onBlur(id, enumOptionsValueForIndex(event.target.value, enumOptions, emptyValue));
-  
-  const _onFocus = (event: SerialisableEvent) =>
-    onFocus(id, enumOptionsValueForIndex(event.target.value, enumOptions, emptyValue));
 
   const checkboxOptions = enumOptions
     ? enumOptions.map((option, index) => ({
@@ -70,7 +54,6 @@ export default function CheckboxesWidget<
 
   return (
     <CheckboxGroup
-      id={id}
       name={id}
       options={checkboxOptions}
       isRequired={required}
