@@ -46,6 +46,9 @@ export default function FieldTemplate<
       disabled={disabled}
       id={id}
       label={label}
+      onKeyRename={props.onKeyRename}
+      onKeyRenameBlur={props.onKeyRenameBlur}
+      onRemoveProperty={props.onRemoveProperty}
       readonly={readonly}
       required={required}
       schema={schema}

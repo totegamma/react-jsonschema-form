@@ -16,12 +16,12 @@ export default function DescriptionField<
 
   if (typeof description === 'string') {
     return (
-      <Text id={id}>
-        {description}
-      </Text>
+      <div id={id}>
+        <Text>{description}</Text>
+      </div>
     );
   }
 
-  // For React elements, wrap in a div since Text may not accept them
+  // For React elements, wrap in a div
   return <div id={id}>{description}</div>;
 }

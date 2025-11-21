@@ -1,5 +1,4 @@
 import {
-  ArrayFieldTemplateItemType,
   ArrayFieldTemplateProps,
   FormContextType,
   getTemplate,
@@ -29,16 +28,12 @@ export default function ArrayFieldTemplate<
     required,
     schema,
     title,
+    fieldPathId,
   } = props;
 
   const uiOptions = getUiOptions(uiSchema);
   const ArrayFieldDescriptionTemplate = getTemplate<'ArrayFieldDescriptionTemplate', T, S, F>(
     'ArrayFieldDescriptionTemplate',
-    registry,
-    uiOptions
-  );
-  const ArrayFieldItemTemplate = getTemplate<'ArrayFieldItemTemplate', T, S, F>(
-    'ArrayFieldItemTemplate',
     registry,
     uiOptions
   );
@@ -52,14 +47,10 @@ export default function ArrayFieldTemplate<
     ButtonTemplates: { AddButton },
   } = registry.templates;
 
-  // Create a dummy idSchema for templates that require it
-  const baseId = (schema as any).$id || 'array';
-  const dummyIdSchema = { $id: baseId } as any;
-
   return (
     <Stack space="space.200">
       <ArrayFieldTitleTemplate
-        idSchema={dummyIdSchema}
+        fieldPathId={fieldPathId}
         title={uiOptions.title || title}
         schema={schema}
         uiSchema={uiSchema}
@@ -67,17 +58,14 @@ export default function ArrayFieldTemplate<
         registry={registry}
       />
       <ArrayFieldDescriptionTemplate
-        idSchema={dummyIdSchema}
+        fieldPathId={fieldPathId}
         description={uiOptions.description || schema.description}
         schema={schema}
         uiSchema={uiSchema}
         registry={registry}
       />
       <Stack space="space.100">
-        {items &&
-          items.map(({ key, ...itemProps }: ArrayFieldTemplateItemType<T, S, F>) => (
-            <ArrayFieldItemTemplate key={key} {...itemProps} />
-          ))}
+        {items}
         {canAdd && (
           <Box>
             <AddButton

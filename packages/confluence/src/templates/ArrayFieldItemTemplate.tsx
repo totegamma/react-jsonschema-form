@@ -1,75 +1,40 @@
-import { ArrayFieldTemplateItemType, FormContextType, RJSFSchema, StrictRJSFSchema } from '@rjsf/utils';
-import { Stack, Box, Inline } from '@forge/react';
+import { ArrayFieldItemTemplateProps, FormContextType, RJSFSchema, StrictRJSFSchema } from '@rjsf/utils';
+import { Stack } from '@forge/react';
 
-/** The `ArrayFieldItemTemplate` component is the template used to render an items of an array.
+/** The `ArrayFieldItemTemplate` component is the template used to render an item of an array.
  *
- * @param props - The `ArrayFieldTemplateItemType` props for the component
+ * @param props - The `ArrayFieldItemTemplateProps` props for the component
  */
 export default function ArrayFieldItemTemplate<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
   F extends FormContextType = any,
->(props: ArrayFieldTemplateItemType<T, S, F>) {
+>(props: ArrayFieldItemTemplateProps<T, S, F>) {
   const {
     children,
+    className,
     disabled,
-    hasToolbar,
-    hasCopy,
-    hasMoveDown,
-    hasMoveUp,
-    hasRemove,
-    index,
-    onCopyIndexClick,
-    onDropIndexClick,
-    onReorderClick,
     readonly,
+    hasToolbar,
+    buttonsProps,
     registry,
-    uiSchema,
   } = props;
 
-  const { CopyButton, MoveDownButton, MoveUpButton, RemoveButton } = registry.templates.ButtonTemplates;
+  const { ArrayFieldItemButtonsTemplate } = registry.templates;
 
   return (
-    <Box>
-      <Stack space="small">
+    <div className={className}>
+      <Stack space="space.100">
         {children}
         {hasToolbar && (
-          <Inline space="small">
-            {(hasMoveUp || hasMoveDown) && (
-              <MoveUpButton
-                disabled={disabled || readonly || !hasMoveUp}
-                onClick={onReorderClick(index, index - 1)}
-                uiSchema={uiSchema}
-                registry={registry}
-              />
-            )}
-            {(hasMoveUp || hasMoveDown) && (
-              <MoveDownButton
-                disabled={disabled || readonly || !hasMoveDown}
-                onClick={onReorderClick(index, index + 1)}
-                uiSchema={uiSchema}
-                registry={registry}
-              />
-            )}
-            {hasCopy && (
-              <CopyButton
-                disabled={disabled || readonly}
-                onClick={onCopyIndexClick(index)}
-                uiSchema={uiSchema}
-                registry={registry}
-              />
-            )}
-            {hasRemove && (
-              <RemoveButton
-                disabled={disabled || readonly}
-                onClick={onDropIndexClick(index)}
-                uiSchema={uiSchema}
-                registry={registry}
-              />
-            )}
-          </Inline>
+          <ArrayFieldItemButtonsTemplate
+            {...buttonsProps}
+            disabled={disabled}
+            readonly={readonly}
+            registry={registry}
+          />
         )}
       </Stack>
-    </Box>
+    </div>
   );
 }

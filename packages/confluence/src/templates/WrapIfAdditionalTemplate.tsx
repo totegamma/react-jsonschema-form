@@ -14,6 +14,8 @@ export default function WrapIfAdditionalTemplate<
   classNames,
   disabled,
   label,
+  onKeyRenameBlur,
+  onRemoveProperty,
   readonly,
   required,
   schema,
@@ -25,16 +27,16 @@ export default function WrapIfAdditionalTemplate<
     return <div className={classNames}>{children}</div>;
   }
 
-  const handleBlur = ({ target }: React.FocusEvent<HTMLInputElement>) => {
-    // Note: onKeyChange is not available in current prop types
-    // This is a simplified version
-    console.log('Key changed to:', target.value);
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    if (onKeyRenameBlur) {
+      onKeyRenameBlur(event);
+    }
   };
 
   const handleRemove = () => {
-    // Note: onDropPropertyClick is not available in current prop types
-    // This is a simplified version
-    console.log('Remove clicked for:', label);
+    if (onRemoveProperty) {
+      onRemoveProperty();
+    }
   };
 
   return (

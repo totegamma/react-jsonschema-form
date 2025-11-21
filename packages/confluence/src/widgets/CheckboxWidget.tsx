@@ -31,7 +31,6 @@ export default function CheckboxWidget<
     readonly,
     label,
     hideLabel,
-    autofocus,
     onChange,
     onBlur,
     onFocus,
@@ -51,7 +50,6 @@ export default function CheckboxWidget<
       onBlur={!readonly ? _onBlur : undefined}
       onFocus={!readonly ? _onFocus : undefined}
       isDisabled={disabled || readonly}
-      autoFocus={autofocus}
       aria-describedby={ariaDescribedByIds(id)}
     />
   );
