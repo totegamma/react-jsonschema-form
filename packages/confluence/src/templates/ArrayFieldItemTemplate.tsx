@@ -1,5 +1,5 @@
 import { ArrayFieldItemTemplateProps, FormContextType, RJSFSchema, StrictRJSFSchema } from '@rjsf/utils';
-import { Stack } from '@forge/react';
+import { Stack, Box } from '@forge/react';
 
 /** The `ArrayFieldItemTemplate` component is the template used to render an item of an array.
  *
@@ -23,7 +23,7 @@ export default function ArrayFieldItemTemplate<
   const { ArrayFieldItemButtonsTemplate } = registry.templates;
 
   return (
-    <div className={className}>
+    <Box>
       <Stack space="space.100">
         {children}
         {hasToolbar && (
@@ -35,6 +35,6 @@ export default function ArrayFieldItemTemplate<
           />
         )}
       </Stack>
-    </div>
+    </Box>
   );
 }

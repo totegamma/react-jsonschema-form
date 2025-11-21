@@ -1,5 +1,5 @@
 import { FieldErrorProps, FormContextType, RJSFSchema, StrictRJSFSchema } from '@rjsf/utils';
-import { Text } from '@forge/react';
+import { Stack, Text } from '@forge/react';
 
 /** The `FieldErrorTemplate` component renders the errors local to the particular field
  *
@@ -16,21 +16,12 @@ export default function FieldErrorTemplate<
   }
 
   return (
-    <ul style={{ color: 'red', fontSize: '0.875rem', listStyle: 'none', padding: 0, margin: '0.25rem 0' }}>
-      {errors.map((error, i) => {
-        if (typeof error === 'string') {
-          return (
-            <li key={i}>
-              <Text>{error}</Text>
-            </li>
-          );
-        }
-        return (
-          <li key={i}>
-            <div>{error}</div>
-          </li>
-        );
-      })}
-    </ul>
+    <Stack space="space.050">
+      {errors.map((error, i) => (
+        <Text key={i} color="red">
+          {typeof error === 'string' ? error : error}
+        </Text>
+      ))}
+    </Stack>
   );
 }

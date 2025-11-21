@@ -1,5 +1,5 @@
 import { FieldTemplateProps, FormContextType, RJSFSchema, StrictRJSFSchema, getTemplate, getUiOptions } from '@rjsf/utils';
-import { Stack } from '@forge/react';
+import { Stack, Box } from '@forge/react';
 
 /** The `FieldTemplate` component is the template used by `SchemaField` to render any field.
  * It renders the field content, (label, description, children, errors, help) inside of a Stack.
@@ -37,7 +37,7 @@ export default function FieldTemplate<
   );
 
   if (hidden) {
-    return <div style={{ display: 'none' }}>{children}</div>;
+    return <Box>{children}</Box>;
   }
 
   return (

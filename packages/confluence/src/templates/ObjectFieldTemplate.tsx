@@ -73,9 +73,7 @@ export default function ObjectFieldTemplate<
       <Stack space="space.100">
         {properties.map((element, index) =>
           element.hidden ? (
-            <div key={index} style={{ display: 'none' }}>
-              {element.content}
-            </div>
+            <Box key={index}>{element.content}</Box>
           ) : (
             <Box key={index}>{element.content}</Box>
           )

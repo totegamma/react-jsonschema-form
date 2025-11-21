@@ -4,6 +4,7 @@ import {
   StrictRJSFSchema,
   WrapIfAdditionalTemplateProps,
 } from '@rjsf/utils';
+import { Box, Stack, Inline, Textfield, Button } from '@forge/react';
 
 export default function WrapIfAdditionalTemplate<
   T = any,
@@ -24,10 +25,10 @@ export default function WrapIfAdditionalTemplate<
   const additional = Object.hasOwn(schema, 'additionalProperties');
 
   if (!additional) {
-    return <div className={classNames}>{children}</div>;
+    return <Box>{children}</Box>;
   }
 
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = (event: any) => {
     if (onKeyRenameBlur) {
       onKeyRenameBlur(event);
     }
@@ -40,27 +41,22 @@ export default function WrapIfAdditionalTemplate<
   };
 
   return (
-    <div className={classNames}>
-      <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
-        <input
-          type="text"
+    <Stack space="space.100">
+      <Inline space="space.100">
+        <Textfield
           onBlur={!readonly ? handleBlur : undefined}
           defaultValue={label}
-          disabled={disabled || readonly}
-          required={required}
+          isDisabled={disabled || readonly}
+          isRequired={required}
           placeholder={keyLabel}
-          style={{ flex: 1, padding: '4px 8px', border: '1px solid #ccc', borderRadius: '3px' }}
         />
-        <button
-          type="button"
+        <Button
+          text="Remove"
           onClick={handleRemove}
-          disabled={disabled || readonly}
-          style={{ padding: '4px 8px', cursor: 'pointer' }}
-        >
-          Remove
-        </button>
-      </div>
+          isDisabled={disabled || readonly}
+        />
+      </Inline>
       {children}
-    </div>
+    </Stack>
   );
 }

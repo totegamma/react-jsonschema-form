@@ -1,5 +1,5 @@
 import { DescriptionFieldProps, FormContextType, RJSFSchema, StrictRJSFSchema } from '@rjsf/utils';
-import { Text } from '@forge/react';
+import { Box, Text } from '@forge/react';
 
 /** The `DescriptionField` is the template to use to render the description of a field
  *
@@ -15,13 +15,9 @@ export default function DescriptionField<
   }
 
   if (typeof description === 'string') {
-    return (
-      <div id={id}>
-        <Text>{description}</Text>
-      </div>
-    );
+    return <Text>{description}</Text>;
   }
 
-  // For React elements, wrap in a div
-  return <div id={id}>{description}</div>;
+  // For React elements, wrap in a Box
+  return <Box>{description}</Box>;
 }
