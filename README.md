@@ -30,6 +30,7 @@
 - [Ant Design v5](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/antd)
 - [Bootstrap v3](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/core)
 - [Chakra UI v3](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/chakra-ui)
+- [Confluence (Atlassian Forge UI Kit)](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/confluence)
 - [Daisy UI v5](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/daisyui)
 - [Fluent UI v9](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/fluentui-rc)
 - [Mantine](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/mantine)

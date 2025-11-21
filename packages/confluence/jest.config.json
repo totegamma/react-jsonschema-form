@@ -1,0 +1,12 @@
+{
+  "verbose": true,
+  "setupFilesAfterEnv": ["../../testing/testSetup.ts"],
+  "testEnvironment": "jsdom",
+  "testEnvironmentOptions": {
+    "browsers": ["chrome", "firefox", "safari"]
+  },
+  "transformIgnorePatterns": ["/node_modules/(?!(@x0k/json-schema-merge|deep-freeze-es6))"],
+  "moduleNameMapper": {
+    "^@forge/react$": "<rootDir>/__mocks__/@forge/react.tsx"
+  }
+}
