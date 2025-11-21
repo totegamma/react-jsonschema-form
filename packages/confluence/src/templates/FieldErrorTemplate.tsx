@@ -18,7 +18,7 @@ export default function FieldErrorTemplate<
   return (
     <Stack space="space.050">
       {errors.map((error, i) => (
-        <Text key={i} color="red">
+        <Text key={i}>
           {String(error)}
         </Text>
       ))}
