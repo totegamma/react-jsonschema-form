@@ -12,7 +12,6 @@ export default function ArrayFieldItemTemplate<
 >(props: ArrayFieldItemTemplateProps<T, S, F>) {
   const {
     children,
-    className,
     disabled,
     readonly,
     hasToolbar,

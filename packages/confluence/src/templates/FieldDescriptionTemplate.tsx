@@ -9,7 +9,7 @@ export default function DescriptionField<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
   F extends FormContextType = any,
->({ id, description }: DescriptionFieldProps<T, S, F>) {
+>({ description }: DescriptionFieldProps<T, S, F>) {
   if (!description) {
     return null;
   }

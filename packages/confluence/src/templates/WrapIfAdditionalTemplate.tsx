@@ -12,7 +12,6 @@ export default function WrapIfAdditionalTemplate<
   F extends FormContextType = any,
 >({
   children,
-  classNames,
   disabled,
   label,
   onKeyRenameBlur,
@@ -51,10 +50,11 @@ export default function WrapIfAdditionalTemplate<
           placeholder={keyLabel}
         />
         <Button
-          text="Remove"
           onClick={handleRemove}
           isDisabled={disabled || readonly}
-        />
+        >
+          Remove
+        </Button>
       </Inline>
       {children}
     </Stack>
