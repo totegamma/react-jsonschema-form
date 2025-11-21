@@ -15,3 +15,4 @@ export const Select = ({ ...props }: any) => <select {...props} />;
 export const Range = ({ ...props }: any) => <input type="range" {...props} />;
 export const DatePicker = ({ ...props }: any) => <input type="date" {...props} />;
 export const SectionMessage = ({ children, ...props }: any) => <div {...props}>{children}</div>;
+export const Form = ({ children, ...props }: any) => <form {...props}>{children}</form>;

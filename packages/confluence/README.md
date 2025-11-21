@@ -36,6 +36,9 @@ function App() {
 
 This theme uses only components from the Atlassian Forge UI Kit that are whitelisted for use in Forge apps:
 
+### Form Wrapper
+- **Form component** - The theme uses Forge's `Form` component instead of a raw HTML `<form>` tag, ensuring proper integration with the Atlassian Forge environment.
+
 ### Widgets
 - TextWidget - using `Textfield`
 - CheckboxWidget - using `Checkbox`

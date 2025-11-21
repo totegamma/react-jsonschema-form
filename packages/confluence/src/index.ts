@@ -4,6 +4,7 @@ import { FormProps, ThemeProps, withTheme } from '@rjsf/core';
 
 import Templates, { generateTemplates } from './templates';
 import Widgets, { generateWidgets } from './widgets';
+import ForgeFormWrapper from './ForgeFormWrapper';
 
 export function generateTheme<
   T = any,
@@ -13,6 +14,7 @@ export function generateTheme<
   return {
     templates: generateTemplates<T, S, F>(),
     widgets: generateWidgets<T, S, F>(),
+    _internalFormWrapper: ForgeFormWrapper,
   };
 }
 
